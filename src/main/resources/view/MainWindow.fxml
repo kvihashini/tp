@@ -8,6 +8,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
@@ -47,51 +48,49 @@
           </padding>
         </StackPane>
 
-        <BorderPane>
-
+        <BorderPane VBox.vgrow="ALWAYS">
           <left>
-            <VBox fx:id="personList" minWidth="250" prefWidth="250" minHeight="400" prefHeight="400" style="-fx-background-color: #f4f4f4;">
+
+            <VBox VBox.vgrow="ALWAYS" fx:id="personList" minWidth="250" prefWidth="250" minHeight="400" prefHeight="400" style="-fx-background-color: #f4f4f4;">
+
               <padding>
                 <Insets bottom="10" left="10" right="10" top="10" />
               </padding>
-              <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="NEVER" />
+              <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             </VBox>
 
           </left>
 
           <center>
-
             <BorderPane>
               <top>
-                <VBox fx:id="taskList" minWidth="250" prefWidth="250" minHeight="220" prefHeight="220" style="-fx-background-color: transparent;">
-                  <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="NEVER" />
+                <VBox fx:id="taskList" minWidth="250" prefWidth="250" minHeight="230" prefHeight="230" style="-fx-background-color: transparent;">
+                  <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                   <padding>
                     <Insets bottom="5" left="10" right="10" top="10" />
                   </padding>
                 </VBox>
               </top>
-              <bottom>
 
-                <VBox fx:id="groupList" minWidth="250" prefWidth="250" minHeight="220" prefHeight="220" style="-fx-background-color: transparent;">
-                  <StackPane fx:id="groupListPanelPlaceholder" VBox.vgrow="NEVER" />
+              <bottom>
+                <VBox fx:id="groupList" minWidth="250" prefWidth="250" minHeight="230" prefHeight="230" style="-fx-background-color: transparent;">
+                  <StackPane fx:id="groupListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                   <padding>
                     <Insets bottom="10" left="10" right="10" top="5" />
                   </padding>
                 </VBox>
               </bottom>
             </BorderPane>
-
           </center>
 
           <right>
-            <StackPane fx:id="viewingPanelPlaceholder" maxWidth = "Infinity" prefWidth="320" minHeight="400" prefHeight="400" styleClass="pane-with-border" VBox.vgrow="NEVER">
+            <StackPane fx:id="viewingPanelPlaceholder" maxWidth = "Infinity" prefWidth="320" minHeight="400" prefHeight="400" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
               <padding>
                 <Insets bottom="10" left="10" right="10" top="10" />
               </padding>
             </StackPane>
 
           </right>
-
         </BorderPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
