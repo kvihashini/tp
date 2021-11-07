@@ -459,10 +459,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​                                    | I want to …​                           | So that I can…​                                                     |
 | -------- | ------------------------------------------ | -------------------------------------------- | ---------------------------------------------------------------------- |
 | `* * *`  | new user                                   | see usage instructions                       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new student                            |                                                                        |
+| `* * *`  | user                                       | add a new student                            | manage students I have that are not present in the app                 |
 | `* * *`  | user                                       | delete a student                             | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | find a student by name                       | locate details of persons without having to go through the entire list |
-| `* * *`  | user                                       | group students together                      | locate similar through their groupings easily                          |
+| `* * *`  | user                                       | group students together                      | locate similar students through their groupings easily                          |
 | `* * *`  | tutor                                      | add a new task                               | remember tasks I have created easily                                   |
 | `* * *`  | tutor                                      | assign tasks to students                     | reuse similar tasks for my students                                    |
 | `* * *`  | tutor                                      | mark tasks as completed                      | track my students' task progress                                       |
@@ -508,6 +508,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Adding a lesson**
+
+1. User requests to list all students
+2. TutorMaster shows a list of students in the students list
+3. User requests to add a specific lesson to the student
+4. TutorMaster adds the lesson to the specific student
+5. TutorMaster displays the specific student in the viewing panel
+
+**Extensions**
+
+* 2a. The list is empty. <br>
+    Use case ends
+* 3a. The request details are incorrect or insufficient.<br>
+    * 3a1. TutorMaster displays an error message. <br>
+    Use case resumes at step 3.
+* 3b. The lesson overlaps with other lessons that the student has. <br>
+    * 3b1. TutorMaster displays an error message. <br>
+    Use case ends.
 
 **Use case: Delete a task**
 
@@ -605,22 +623,49 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a student
 
-1. Deleting a person while all persons are being shown
+1. Deleting a student while all students are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `student -d 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `student -d 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `student -d`, `student -d x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+### Adding a lesson to a student
+
+1. Adding a lesson while all students are being shown
+    1. Prerequisites: List all students using the list command. Multiple students in the list.
+    1. Test case: `student -al 1 s/Biology st/23:00 et/23:59 d/Fri` <br>
+    Expected: Lesson is added to first student in the list. Student details are shown in the viewing panel on the right.
+    Lesson can be seen under "Lessons" in the viewing panel.
+    1. Test case: Repeat `student -al 1 s/Biology st/23:00 et/23:59 d/Fri` after previous test case. <br>
+    Expected: Lesson cannot be added to first student because it overlaps with the lesson from previous test case. Error
+    message is shown.
+    1. Test case: Use `student -al s/Biology st/23:00 et/23:59 d/Fri` <br>
+    Expected: Error message is shown as no index is specified.
+    
+
+### Grouping students
+
+1. Adding students to a group while all students are being shown
+
+    1. Prerequisites: List all students using the `list` command. At least 2 students in the list.
+    1. Successful test case: `group -a 1 2 n/New Group` <br>
+    Expected: First two students are added into the group. Group details appear in the viewing panel on the right.
+    Using `student -v 1` and `student -v 2` shows that the group name __New Group__ shows up in the student view.
+    1. Test case: `group -a 1 2` <br>
+    Expected: No new group is created, error message is shown as there is no group name specified.
+    1. Test case: `group -a 0 1 n/New Group` <br>
+    Expected: No new group is created, error message is shown as the index __0__ is invalid.
 
 ### Saving data
 

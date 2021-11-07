@@ -40,7 +40,7 @@ public class Exam implements Comparable<Exam> {
 
     @Override
     public String toString() {
-        return String.format("%s on %s", subject, dateTime.format(examDateTimeFormat));
+        return String.format("%s: %s", dateTime.format(examDateTimeFormat), subject);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.groups;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.GROUP_COMMAND;
 
 import java.util.List;
 
@@ -20,10 +21,10 @@ public class DeleteGroupCommand extends Command {
 
     public static final String COMMAND_WORD = "-d";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = GROUP_COMMAND + " " + COMMAND_WORD
             + ": Deletes the group identified by the index number used in the displayed group list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + "group " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_GROUP_SUCCESS = "Deleted Group: %1$s";
 

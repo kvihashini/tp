@@ -170,7 +170,6 @@ public class AddressBookTest {
 
         @Override
         public List<LessonWithAttendees> getSortedLessonsWithAttendees() {
-            // TODO let this do something!
             throw new AssertionError("Unsupported command!");
         }
 

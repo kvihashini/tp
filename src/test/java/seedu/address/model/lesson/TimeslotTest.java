@@ -2,6 +2,7 @@ package seedu.address.model.lesson;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTimeslots.ELEVEN_TO_ONE;
@@ -33,7 +34,7 @@ class TimeslotTest {
 
     @Test
     void isValidTimeslot_validTimings_returnsTrue() {
-        assertTrue(Timeslot.isValidTimeslot("14:00", "16:00"));
+        assertTrue(Timeslot.isValidTimeslot("14:00", "15:00"));
         assertTrue(Timeslot.isValidTimeslot("15:00", "15:01"));
     }
 
@@ -52,5 +53,14 @@ class TimeslotTest {
         Timeslot t1 = new Timeslot("10:00", "12:00");
         Timeslot t2 = new Timeslot("10:00", "12:00");
         assertEquals(t1, t2);
+    }
+
+    @Test
+    void testEquals_sameTimings_returnsFalse() {
+        Timeslot timeSlot = new Timeslot("10:00", "12:00");
+        Timeslot differentEnd = new Timeslot("10:00", "11:00");
+        Timeslot differentStart = new Timeslot("11:00", "12:00");
+        assertNotEquals(timeSlot, differentEnd);
+        assertNotEquals(timeSlot, differentStart);
     }
 }

@@ -5,6 +5,10 @@ package seedu.address.logic.parser;
  */
 public class CliSyntax {
 
+    /* Umbrella command definitions */
+    public static final String PERSON_COMMAND = "student";
+    public static final String GROUP_COMMAND = "group";
+
     /* Prefix definitions */
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_PHONE = new Prefix("p/");
@@ -27,5 +31,4 @@ public class CliSyntax {
     public static final String FRIDAY = "fri";
     public static final String SATURDAY = "sat";
     public static final String SUNDAY = "sun";
-
 }

@@ -14,8 +14,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 public class GroupCommandsParser {
 
-    public static final String COMMAND_WORD = "group";
-
     /**
      * Used for further separation of command action and args.
      */

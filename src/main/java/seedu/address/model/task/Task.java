@@ -98,4 +98,11 @@ public class Task implements HasUniqueId {
                 + "; Deadline: "
                 + getDeadline();
     }
+
+    /**
+     * Returns the task string with given completion status for use in PersonViewCard
+     */
+    public String toCompletionString(Boolean isDone) {
+        return (isDone ? "[X] " : "[  ] ") + toString();
+    }
 }

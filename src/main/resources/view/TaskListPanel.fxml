@@ -3,6 +3,8 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.Label?>
 <VBox xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <Label id="panelHeader" text="Tasks" maxWidth="Infinity" alignment="CENTER"/>
     <ListView fx:id="taskListView" prefWidth="248.0" VBox.vgrow="ALWAYS" />
 </VBox>

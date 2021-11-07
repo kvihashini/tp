@@ -10,7 +10,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.persons.AddPersonCommand;
 import seedu.address.logic.commands.persons.EditPersonCommand.EditPersonDescriptor;
-import seedu.address.logic.parser.persons.PersonCommandsParser;
+import seedu.address.logic.parser.CliSyntax;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -23,7 +23,7 @@ public class PersonUtil {
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddCommand(Person person) {
-        return PersonCommandsParser.COMMAND_WORD + " " + AddPersonCommand.COMMAND_WORD + " "
+        return CliSyntax.PERSON_COMMAND + " " + AddPersonCommand.COMMAND_WORD + " "
                 + getPersonDetails(person);
     }
 

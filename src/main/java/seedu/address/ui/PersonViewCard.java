@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
@@ -14,7 +15,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.group.GroupWithDetails;
@@ -38,7 +38,7 @@ public class PersonViewCard extends UiPart<Region> {
      */
 
     @FXML
-    private HBox cardPane;
+    private VBox cardPane;
     @FXML
     private Label name;
     @FXML
@@ -101,6 +101,7 @@ public class PersonViewCard extends UiPart<Region> {
     private void updatePersonDetails(PersonWithDetails personWithDetails) {
         Person person = personWithDetails.getPerson();
         Set<Task> personTasks = personWithDetails.getTasks();
+        Map<Task, Boolean> personTasksCompletion = personWithDetails.getTasksCompletion();
 
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
@@ -116,8 +117,11 @@ public class PersonViewCard extends UiPart<Region> {
                 lessons.toString()).collect(Collectors.toList()), Optional.of("No lessons yet!"));
 
         // add person tasks
-        UiUtil.addIndexedLabels(tasks, personTasks.stream().map(task ->
-                task.toString()).collect(Collectors.toList()), Optional.of("No tasks yet!"));
+        UiUtil.addIndexedLabels(tasks, personTasks.stream().map(task -> {
+            Boolean isDone = personTasksCompletion.get(task);
+            assert !isDone.equals(null);
+            return task.toCompletionString(isDone);
+        }).collect(Collectors.toList()), Optional.of("No tasks yet!"));
 
         // add person exams
         UiUtil.addIndexedLabels(exams, person.getExams().stream().map(exam ->

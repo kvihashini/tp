@@ -17,8 +17,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 public class PersonCommandsParser {
 
-    public static final String COMMAND_WORD = "student";
-
     /**
      * Used for further separation of command action and args.
      */

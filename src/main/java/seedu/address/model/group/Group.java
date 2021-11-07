@@ -214,19 +214,6 @@ public class Group implements HasUniqueId, TaskAssignable, LessonAssignable {
         return model.hasGroup(this);
     }
 
-    /**
-     * Returns true if both groups have the same name.
-     * This defines a weaker notion of equality between two groups.
-     */
-    public boolean isSameGroup(Group otherGroup) {
-        if (otherGroup == this) {
-            return true;
-        }
-
-        return otherGroup != null
-                && otherGroup.getName().equals(getName());
-    }
-
 
     @Override
     public boolean canAssignLesson(Lesson lesson) {
@@ -267,6 +254,18 @@ public class Group implements HasUniqueId, TaskAssignable, LessonAssignable {
         }
         NoOverlapLessonList newList = NoOverlapLessonList.of(lessons);
         return new Group(name, id, assignedTaskIds, assignedPersonIds, newList);
+    }
+
+    /**
+     * Returns true if both groups have the same name.
+     * This defines a weaker notion of equality between two groups.
+     */
+    public boolean isSameGroup(Group otherGroup) {
+        if (otherGroup == this) {
+            return true;
+        }
+
+        return otherGroup != null && otherGroup.getName().equals(getName());
     }
 
     /**

@@ -28,7 +28,7 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.GroupBuilder;
 import seedu.address.testutil.ModelStub;
 
-public class AddGroupCommandTest {
+public class AddGroupCommandIntegrationTest {
 
     private Group toAdd = new GroupBuilder().withName("HURRAY").build();
     private List<Index> indexes = new ArrayList<>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON));

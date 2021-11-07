@@ -9,9 +9,9 @@ import static seedu.address.testutil.TypicalLessons.MON_11_13_MATH;
 import static seedu.address.testutil.TypicalLessons.MON_16_18_MATH;
 import static seedu.address.testutil.TypicalLessons.TUE_16_18_ENGLISH;
 
-import java.time.DayOfWeek;
-
 import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.LessonBuilder;
 
 class LessonTest {
 
@@ -51,9 +51,22 @@ class LessonTest {
     }
 
     @Test
-    void testEquals_sameDetails_returnsTrue() {
-        Lesson l1 = new Lesson(new Timeslot("10:00", "14:00"), new Subject("Math"), DayOfWeek.of(5));
-        Lesson l2 = new Lesson(new Timeslot("10:00", "14:00"), new Subject("Math"), DayOfWeek.of(5));
-        assertTrue(l1.equals(l2));
+    void testEquals() {
+        // same details
+        Lesson lesson = new LessonBuilder().withTimeslot("10:00", "14:00").withSubject("Math").withDayOfWeek(5).build();
+        Lesson sameDetails = new LessonBuilder(lesson).build();
+        assertTrue(lesson.equals(sameDetails));
+
+        // different timeslot
+        Lesson differentTimeslot = new LessonBuilder(lesson).withTimeslot("12:00", "16:00").build();
+        assertFalse(lesson.equals(differentTimeslot));
+
+        // different subject
+        Lesson differentSubject = new LessonBuilder(lesson).withSubject("Biology").build();
+        assertFalse(lesson.equals(differentSubject));
+
+        // different day of week
+        Lesson differentDay = new LessonBuilder(lesson).withDayOfWeek(2).build();
+        assertFalse(lesson.equals(differentDay));
     }
 }

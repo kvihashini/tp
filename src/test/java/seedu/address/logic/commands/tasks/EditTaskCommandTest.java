@@ -80,8 +80,6 @@ public class EditTaskCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        //showPersonAtIndex(model, INDEX_FIRST_TASK);
-
         Task taskInFilteredList = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         Task editedTask = new TaskBuilder(taskInFilteredList).withDescription(VALID_DESCRIPTION_QUIZ1).build();
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_TASK,
@@ -106,8 +104,6 @@ public class EditTaskCommandTest {
 
     @Test
     public void execute_duplicateTaskFilteredList_failure() {
-        //showPersonAtIndex(model, INDEX_FIRST_TASK);
-
         // edit task in filtered list into a duplicate in address book
         Task taskInList = model.getAddressBook().getTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_TASK,

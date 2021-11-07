@@ -34,6 +34,7 @@ public class NoOverlapLessonListTest {
     void doesLessonOverlap_overlappingLesson_returnTrue() {
         List<Lesson> lessonList = Arrays.asList(MON_10_12_BIOLOGY, MON_16_18_MATH, TUE_16_18_ENGLISH);
         NoOverlapLessonList noOverlapLessonList = NoOverlapLessonList.of(lessonList);
+        // test above list with new lesson below
         assertTrue(noOverlapLessonList.doesLessonOverlap(MON_11_13_MATH));
     }
 
@@ -41,7 +42,9 @@ public class NoOverlapLessonListTest {
     void isValidIndex() {
         List<Lesson> lessonList = Arrays.asList(MON_10_12_BIOLOGY, MON_16_18_MATH, TUE_16_18_ENGLISH);
         NoOverlapLessonList noOverlapLessonList = NoOverlapLessonList.of(lessonList);
-        assertTrue(noOverlapLessonList.isValidIndex(1));
+        assertFalse(noOverlapLessonList.isValidIndex(-1));
+        assertTrue(noOverlapLessonList.isValidIndex(0));
+        assertTrue(noOverlapLessonList.isValidIndex(2));
         assertFalse(noOverlapLessonList.isValidIndex(100));
     }
 

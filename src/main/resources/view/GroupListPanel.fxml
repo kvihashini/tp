@@ -2,7 +2,9 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
 
 <VBox prefHeight="202.0" prefWidth="248.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <Label id="panelHeader" text="Groups" maxWidth="Infinity" alignment="CENTER"/>
     <ListView fx:id="groupListView" VBox.vgrow="ALWAYS" />
 </VBox>

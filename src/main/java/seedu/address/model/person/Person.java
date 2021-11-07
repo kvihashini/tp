@@ -336,7 +336,7 @@ public class Person implements HasUniqueId, Attendee,
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same name, phone and email.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -345,11 +345,37 @@ public class Person implements HasUniqueId, Attendee,
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail());
     }
 
     /**
-     * Returns true if both persons have the same id.
+     * Returns true if both persons have exactly the same fields, possibly except the id.
+     */
+    public boolean hasSameData(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Person)) {
+            return false;
+        }
+
+        Person otherPerson = (Person) other;
+
+        return otherPerson.isSamePerson(this)
+                && otherPerson.getAddress().equals(address)
+                && otherPerson.getTags().equals(tags)
+                && otherPerson.getAssignedTaskIds().equals(assignedTaskIds)
+                && otherPerson.getAssignedGroupIds().equals(assignedGroupIds)
+                && otherPerson.getTasksCompletion().equals(tasksCompletion)
+                && otherPerson.getLessonsList().equals(lessonsList)
+                && otherPerson.getExams().equals(exams);
+    }
+
+    /**
+     * Returns true if both persons have the same identity fields and data fields.
      * This defines a stronger notion of equality between two persons.
      */
     @Override
@@ -363,14 +389,9 @@ public class Person implements HasUniqueId, Attendee,
         }
 
         Person otherPerson = (Person) other;
-        // TODO: make the following code only compare the object id. You will have to face some tedious test fail.
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getLessonsList().equals(lessonsList)
-                && otherPerson.getExams().equals(exams);
+
+        return otherPerson.hasSameData(this)
+                && otherPerson.getId().equals(id);
     }
 
     @Override
@@ -381,7 +402,6 @@ public class Person implements HasUniqueId, Attendee,
 
     @Override
     public String toString() {
-        // TODO: Add individual exams in exams list to string representation!
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
                 .append("; Phone: ")

@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalGroups.GROUP_1;
-import static seedu.address.testutil.TypicalObjects.ALICE;
+import static seedu.address.testutil.TypicalPersons.ALICE_WITH_LESSON;
 import static seedu.address.testutil.TypicalTasks.REPORT_1;
 
 import java.util.List;
@@ -42,7 +42,7 @@ public class UniqueIdTest {
     @Test
     public void getOwnerTest() {
         Task task = REPORT_1;
-        Person student = ALICE;
+        Person student = ALICE_WITH_LESSON;
         Group group = GROUP_1;
         UniqueId taskId = task.getId();
         UniqueId studentId = student.getId();

@@ -7,9 +7,10 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.ScrollPane?>
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <ScrollPane id="personScroll" HBox.hgrow="ALWAYS" prefWidth="300">
-        <VBox id="personBox" alignment="TOP_LEFT" minHeight="400" prefWidth="300" maxWidth="Infinity">
+<VBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <Label id="panelHeader" text="Student" maxWidth="Infinity" alignment="CENTER"/>
+    <ScrollPane id="personScroll" fx:id="personScroll" VBox.vgrow="ALWAYS" prefWidth="300">
+        <VBox id="personBox" fx:id="personBox" alignment="TOP_LEFT" minHeight="400" prefWidth="300" maxWidth="Infinity">
             <padding>
                 <Insets top="5" right="5" bottom="5" left="12" />
             </padding>
@@ -38,4 +39,4 @@
             <VBox fx:id="groups"/>
         </VBox>
     </ScrollPane>
-</HBox>
+</VBox>

@@ -15,6 +15,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DAY_MON;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_MATH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_10;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_12;
+import static seedu.address.logic.parser.CommandParserTestUtil.INVALID_COMMAND_INVALID_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -33,12 +34,14 @@ class PersonAddLessonParserTest {
 
     private PersonAddLessonParser parser = new PersonAddLessonParser();
 
+    private final Index targetIndex = INDEX_FIRST_PERSON;
+
     @Test
     public void parse_allFieldsPresent_success() throws Exception {
         Lesson expectedLesson = new LessonBuilder().withSubject(VALID_SUBJECT_MATH)
                 .withTimeslot(VALID_TIME_10, VALID_TIME_12).withDayOfWeek(ParserUtil.parseDayOfWeek(VALID_DAY_MON))
                 .build();
-        Index targetIndex = INDEX_FIRST_PERSON;
+
         EditPersonCommand.EditPersonDescriptor editPersonDesc = new EditPersonCommand.EditPersonDescriptor();
         editPersonDesc.addLesson(expectedLesson);
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + targetIndex.getOneBased() + SUBJECT_DESC_MATH
@@ -51,18 +54,19 @@ class PersonAddLessonParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, PersonAddLessonParser.MESSAGE_USAGE);
         Index targetIndex = INDEX_FIRST_PERSON;
 
+        // no index
         assertParseFailure(parser, PREAMBLE_WHITESPACE + SUBJECT_DESC_MATH + DAY_MON
                 + TIMESLOT_DESC_10_12, expectedMessage);
 
+        // no day
         assertParseFailure(parser, PREAMBLE_WHITESPACE + targetIndex.getOneBased() + SUBJECT_DESC_MATH
                 + TIMESLOT_DESC_10_12, expectedMessage);
 
-        assertParseFailure(parser, PREAMBLE_WHITESPACE + targetIndex.getOneBased() + SUBJECT_DESC_MATH
-                + TIMESLOT_DESC_10_12, expectedMessage);
-
+        // no subject
         assertParseFailure(parser, PREAMBLE_WHITESPACE + targetIndex.getOneBased() + DAY_MON
                 + TIMESLOT_DESC_10_14, expectedMessage);
 
+        // no timeslot
         assertParseFailure(parser, PREAMBLE_WHITESPACE + targetIndex.getOneBased() + DAY_MON
                 + SUBJECT_DESC_MATH, expectedMessage);
     }
@@ -70,6 +74,9 @@ class PersonAddLessonParserTest {
     @Test
     public void parse_invalidValue_failure() {
         Index targetIndex = INDEX_FIRST_PERSON;
+
+        assertParseFailure(parser, PREAMBLE_WHITESPACE + "abc" + SUBJECT_DESC_MATH + TIMESLOT_DESC_10_12
+                + DAY_MON, INVALID_COMMAND_INVALID_INDEX);
 
         assertParseFailure(parser, PREAMBLE_WHITESPACE + targetIndex.getOneBased() + INVALID_SUBJECT_DESC
                 + TIMESLOT_DESC_10_12 + DAY_MON, Subject.MESSAGE_CONSTRAINTS);

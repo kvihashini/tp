@@ -78,7 +78,6 @@ public class EditTaskCommand extends Command {
         model.updateLessonWithAttendeesList();
         model.setViewingType(ViewingType.SCHEDULE);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
-        //return new CommandResult("Hello from remark");
     }
 
     /**

@@ -2,24 +2,35 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
-        </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+<?import javafx.scene.control.ScrollPane?>
+<VBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <Label id="panelHeader" text="Group" maxWidth="Infinity" alignment="CENTER"/>
+
+    <ScrollPane id="groupScroll" fx:id="groupScroll" VBox.vgrow="ALWAYS" prefWidth="300">
+        <VBox id="groupBox" fx:id="groupBox" alignment="TOP_LEFT" minHeight="400" prefWidth="300" maxWidth="Infinity">
+
             <padding>
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
+
             <HBox spacing="5" alignment="CENTER_LEFT">
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <Label fx:id="personsLabel" styleClass="cell_small_label" text="\$persons" />
+
+            <Label fx:id="personsLabel" styleClass="cell_small_label" text="Students: "/>
+            <VBox fx:id="persons"/>
+            <Label text="" styleClass="cell_small_label"/> <!--empty row!-->
+
+            <Label fx:id="lessonsLabel"  styleClass="cell_small_label" text="Group Lessons:"/>
+            <VBox fx:id="lessons"/>
+            <Label text="" styleClass="cell_small_label"/> <!--empty row!-->
+
+            <Label fx:id="tasksLabel"  styleClass="cell_small_label" text="Group Tasks:"/>
+            <VBox fx:id="tasks"/>
+            <Label text="" styleClass="cell_small_label"/> <!--empty row!-->
         </VBox>
-    </GridPane>
-</HBox>
+    </ScrollPane>
+</VBox>

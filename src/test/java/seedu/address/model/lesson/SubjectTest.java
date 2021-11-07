@@ -20,12 +20,20 @@ class SubjectTest {
 
     @Test
     void isValidSubject_invalidSubject_returnsFalse() {
+        // no characters
         assertFalse(Subject.isValidSubject(""));
         assertFalse(Subject.isValidSubject("-"));
     }
 
     @Test
     void isValidSubject_validSubject_returnsTrue() {
-        assertTrue(Subject.isValidSubject("English"));
+        // single number
+        assertTrue(Subject.isValidSubject("1"));
+        // single character
+        assertTrue(Subject.isValidSubject("E"));
+        // word with numbers
+        assertTrue(Subject.isValidSubject("English123"));
+        // word with symbols
+        assertTrue(Subject.isValidSubject("English-Basic"));
     }
 }

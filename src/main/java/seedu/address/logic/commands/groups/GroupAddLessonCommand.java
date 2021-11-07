@@ -19,7 +19,7 @@ import seedu.address.model.person.Person;
 public class GroupAddLessonCommand extends Command {
 
     public static final String CANNOT_ASSIGN_MESSAGE = " in the group cannot be assigned this lesson";
-    public static final String ADD_LESSON_SUCCESS = "Lesson added: %1$s";
+    public static final String ADD_LESSON_SUCCESS = "Lesson added";
 
     private final Index groupIndex;
     private final Lesson lessonToAdd;
@@ -61,6 +61,6 @@ public class GroupAddLessonCommand extends Command {
         model.updateFilteredGroupList(Model.PREDICATE_SHOW_ALL_GROUPS);
         model.setGroupToView(groupWithLesson);
         model.setViewingType(ViewingType.GROUP);
-        return new CommandResult(String.format(ADD_LESSON_SUCCESS, lessonToAdd));
+        return new CommandResult(ADD_LESSON_SUCCESS);
     }
 }

@@ -31,11 +31,12 @@ public class PersonRemoveExamParserTest {
         // empty
         assertParseFailure(parser, "", INVALID_FORMAT);
 
-        // invalid indexes
-        assertParseFailure(parser, "...", INVALID_FORMAT);
+        // missing index
+        assertParseFailure(parser, " " + INDEX_FIRST_PERSON.getOneBased(), INVALID_FORMAT);
 
-        assertParseFailure(parser, "... 2", INVALID_COMMAND_INVALID_INDEX);
+        // one invalid index
+        assertParseFailure(parser, "..." + " " + INDEX_FIRST_EXAM.getOneBased(), INVALID_COMMAND_INVALID_INDEX);
 
-        assertParseFailure(parser, "abc 1", INVALID_COMMAND_INVALID_INDEX);
+        assertParseFailure(parser, INDEX_FIRST_PERSON.getOneBased() + " " + "abc", INVALID_COMMAND_INVALID_INDEX);
     }
 }

@@ -82,11 +82,11 @@ public class Lesson implements Comparable<Lesson> {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(subject)
-                .append(" on ")
-                .append(dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.ENGLISH))
-                .append(" from ")
-                .append(timeslot);
+        builder.append(dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.ENGLISH))
+                .append(" ")
+                .append(timeslot)
+                .append(": ")
+                .append(subject);
 
         return builder.toString();
     }

@@ -44,13 +44,13 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case PersonCommandsParser.COMMAND_WORD:
+        case CliSyntax.PERSON_COMMAND:
             return PersonCommandsParser.parseCommand(arguments);
 
         case TaskCommandsParser.COMMAND_WORD:
             return TaskCommandsParser.parseCommand(arguments);
 
-        case GroupCommandsParser.COMMAND_WORD:
+        case CliSyntax.GROUP_COMMAND:
             return GroupCommandsParser.parseCommand(arguments);
 
         case ClearCommand.COMMAND_WORD:
